@@ -53,33 +53,33 @@ The attributes are described as follows:
 
 ```javascript
 /**
- * @description 定义列
- * param text 列头显示的文本
- * param dataIndex 数据索引名称
- * param display 列是否显示
+ * @description Definition columns
+ * @param {String}text Header text
+ * @param {String}dataIndex Index name
+ * @param {boolean}display show/hide
  */
 $scope.columns = [{
-  text: '客户名',
+  text: 'User Name',
   dataIndex: 'name',
   display: true
 },{
-  text: '客户编号',
+  text: 'Code',
   dataIndex: 'uuid',
   display: true
 }];
-//数据模型存储
+//Data Store
 $scope.store = [{
   uuid: '1001', name: '1001'
 },{
   uuid: '1002', name: '1002'
 }];
 $scope.events = {
-  //当表格被选中时回掉函数，参数item是被选中的数据模型
+  //Return function when the form is selected，Param (item) as Data model is selected
   checked: function(item){
     console.log(item);
   }
 };
-//分页信息配置
+//Paging options
 $scope.pagination = {
   total: 0,
   currentPage: 0,
@@ -101,9 +101,9 @@ $scope.pagination = {
     requestTableDataFunction();
   }
 };
-//最后一列操作按钮配置
+//The table last column operation button configuration
 $scope.operation = {
-  text: '查看详细',
+  text: 'detail',
   click: function(item){
     requestItemInfoById(item.uuid);
   }
