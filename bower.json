@@ -1,24 +1,32 @@
 {
-    "name": "tablepagination",
-    "version": "1.0.0",
-    "homepage": "https://github.com/tangfang/tablepagination",
-    "authors": [
-        "tangfang <2002323stf@sina.com.cn>"
-    ],
-    "description": "An extended AngularJS Directive table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v3).",
-    "main": [
-        "src/tablepagination.js"
-    ],
-    "keywords": [
-        "bootstrap",
-        "table",
-        "pagination",
-        "tablepagination"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components"
-    ]
+  "name": "tablepagination",
+  "version": "1.0.0",
+  "homepage": "https://github.com/tangfang/tablepagination",
+  "authors": [
+      "tangfang <2002323stf@sina.com.cn>"
+  ],
+  "description": "An extended AngularJS Directive table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v3).",
+  "main": [
+      "build/tablepagination.min.js"
+  ],
+  "dependencies": {
+    "angular": "^1.3.0",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.3.0",
+    "angular-resource": "^1.3.0",
+    "angular-route": "^1.3.0"
+  },
+  "keywords": [
+      "bootstrap",
+      "table",
+      "pagination",
+      "tablepagination"
+  ],
+  "license": "MIT",
+  "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components"
+  ],
+  "moduleName": "tablePagination"
 }
