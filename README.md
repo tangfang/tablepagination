@@ -12,7 +12,7 @@ or Include all neccessary files
 <link rel="stylesheet" href="bower_components/bootstrap/dist/bootstrap.min.css" />
 
 <script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/tablepagination/dist/tablepagination.min.js"></script>
+<script src="bower_components/tablepagination/build/tablepagination.min.js"></script>
 ```
 
 ## Documentation
@@ -29,7 +29,7 @@ angular.module('your app name', [
 ```
 ### Populating a tablePagination using HTML
 ```html
-<table-pagination columns="columns" store="store" events="events" pagination="pagination" operation="operation"></table-pagination>
+<table-pagination columns="columns" store="store" events="events" operation="operation"></table-pagination>
 ```
 
 The attributes are described as follows:
@@ -37,14 +37,6 @@ The attributes are described as follows:
  * `columns` - The table needs to display the columns (is Array)(is Required). 
  * `store` - The table needs to data store (is Array)(is Required).
  * `events` - This table triggered event(is JSONObject)(Optional). as: `checked` (Return function when the form is selected).
- * `pagination` - Paging configuration (is JSONObject)(Optional):
-   - `total` - Total data.(is Number)
-   - `currentPage` - The current page.(is Number)
-   - `pageCount` - The total number of pages. (is Number)
-   - `goToFirst` - First page button click event. (is Function)
-   - `goToPrevious` - Previous page button click event. (is Function)
-   - `goToNext` - Next page button click event. (is Function)
-   - `goToLast` - Last page button click event. (is Function)
  * `operation` - The table last column operation button configuration (is JSONObject)(Optional):
    - `text` - Button text. (is String)
    - `click` - Button click event. (is Function)
@@ -55,16 +47,20 @@ The attributes are described as follows:
 /**
  * @description Definition columns
  * @param {String}text Header text
- * @param {String}dataIndex Index name
+ * @param {Function}getData(data) Receive column data, return the required column values
  * @param {boolean}display show/hide
  */
 $scope.columns = [{
   text: 'User Name',
-  dataIndex: 'name',
+  getData: function(data){
+    return data.name;
+  },
   display: true
 },{
   text: 'Code',
-  dataIndex: 'uuid',
+  getData: function(data){
+    return data.uuid;
+  },
   display: true
 }];
 //Data Store
@@ -77,30 +73,15 @@ $scope.events = {
   //Return function when the form is selected，Param (item) as Data model is selected
   checked: function(item){
     console.log(item);
+  },
+  load: function(pagination){
+    $scope.pagination = pagination;
+    $http.get('json/table-pagination.json').success(function(response){
+      $scope.store = response;
+    })
   }
 };
-//Paging options
-$scope.pagination = {
-  total: 0,
-  currentPage: 0,
-  pageCount: 0,
-  goToFirst : function(){
-    startpage = 1;
-    requestTableDataFunction();
-  },
-  goToPrevious : function(){
-    startpage--;
-    requestTableDataFunction();
-  },
-  goToNext : function(){
-    startpage++;
-    requestTableDataFunction();
-  },
-  goToLast : function(){
-    startpage = $scope.pagination.pageCount;
-    requestTableDataFunction();
-  }
-};
+
 //The table last column operation button configuration
 $scope.operation = {
   text: 'detail',

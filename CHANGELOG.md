@@ -1,6 +1,9 @@
 ## ChangeLog
 
-### 1.1.0
+### 1.2.1
+* Update column.getData()
+
+### 1.2.0
 
 * Update templateUrl for template String.
 
