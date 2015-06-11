@@ -26,14 +26,14 @@ angular.module('tablePagination')
                           '<span ng-class="{\'checked\':(data == checkItem) || (data.selected == true)}"><input type="checkbox" checked /></span>'+
                         '</div>'+
                       '</td>'+
-                      '<td ng-repeat="column in columns" ng-hide="!column.display" ng-bind="data[column.dataIndex]" ></td>'+
+                      '<td ng-repeat="column in columns" ng-hide="!column.display" ng-bind="column.getData(data)" ></td>'+
                       '<td ng-if="operation">'+
                         '<a ng-click="operation.click(data)" class="btn default btn-xs green-stripe" ng-bind="operation.text"></a>'+
                       '</td>'+
                     '</tr>'+
                   '</tbody>'+
                 '</table>'+
-                '<div class="row" ng-if="pagination">'+
+                '<div class="row" ng-if="events.load">'+
                   '<div class="col-md-5 col-sm-12">'+
                     '<div class="dataTables_info">共{{pagination.total}}条记录,当前第{{pagination.currentPage}}页,共{{pagination.pageCount}}页</div>'+
                   '</div>'+
